@@ -3,6 +3,21 @@ pointgrey_camera_driver
 
 [![Build Status](https://travis-ci.org/ros-drivers/pointgrey_camera_driver.png?branch=master)](https://travis-ci.org/ros-drivers/pointgrey_camera_driver)
 
+
+
+update by JW:
+
+Install for Jeston TX2:
+
+
+
+Ref:
+- https://blog.csdn.net/QFJIZHI/article/details/82896355
+- https://blog.csdn.net/qq_34254510/article/details/80261980
+- https://www.cnblogs.com/renqiangnwpu/p/9142085.html
+- https://devtalk.nvidia.com/default/topic/1049581/jetson-agx-xavier/change-usbcore-usbfs_memory_mb-solved-/
+
+----
 ROS-compatible Camera drivers originally provided by NREC, part of Carnegie Mellon University's robotics institute.
 These drives are included along with modifications of the standard ros image messages that enable HDR and physics based vision.
 

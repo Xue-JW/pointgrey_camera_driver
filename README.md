@@ -4,14 +4,36 @@ pointgrey_camera_driver
 [![Build Status](https://travis-ci.org/ros-drivers/pointgrey_camera_driver.png?branch=master)](https://travis-ci.org/ros-drivers/pointgrey_camera_driver)
 
 
+This Repo is compatible with armv8 architecture devices, but only tested on jetson tx2.
 
-update by JW:
+Due to the update of the device website, the URL in python script has expired, so I blocked some code of downloading device and directly access the local 64-bit armv8 driver at compile time.
 
-Install for Jeston TX2:
+You can download the last pointgrep camera drive [here](https://flir.app.boxcn.net/v/Flycapture2SDK) and modify the pointgrey_camera_driver/cmake/download_flycap and pointgrey_camera_driver/cmake/DownloadFlyCap.cmake to be compatible with your device.
 
 
+Installation steps for Jeston TX2:
+```
+# ENV: Ubuntu 16.04 + ROS kinetic
+
+1. Compile source code with catkin_make.
+
+2. Open `PROJECT_DIR/build/...[TODO]...` and run `sudo sh flycap2-conf` to set USB permissions.
+
+3. Set usb buffer size and USB3.0 mode by run `gedit /boot/extlinux/extlinux.conf`, add `usbcore.usbfs_memory_mb=1024` and `usb_port_owner_info=2` at the end of the "APPEND" line.
+
+4. Reboot TX2.
+
+5. check buffer size after reboot: `cat /sys/module/usbcore/parameters/usbfs_memory_mb`
+
+6. Use `rosrun pointgrey_camera_driver list_cameras` to get camera info.
+
+7. Run `roslaunch pointgrey_camera_driver camera.launch camera_serial:=xxx` and check camera data by rqt or `rostopic hz /camera_image_color`.
+
+If step 3 not work, check [here](https://devtalk.nvidia.com/default/topic/1049581/jetson-agx-xavier/change-usbcore-usbfs_memory_mb-solved-/)
+```
 
 Ref:
+
 - https://blog.csdn.net/QFJIZHI/article/details/82896355
 - https://blog.csdn.net/qq_34254510/article/details/80261980
 - https://www.cnblogs.com/renqiangnwpu/p/9142085.html

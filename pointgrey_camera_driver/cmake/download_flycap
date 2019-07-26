@@ -88,30 +88,32 @@ OS_LIBRARY_VERSION = {
   'xenial': 'current'
 }
 
-arch, library_dest, os_code_name = sys.argv[1:]
+arch, library_dest, os_code_name, pointgrey_drive = sys.argv[1:]
 library_version = OS_LIBRARY_VERSION.get(os_code_name, 'current')
 
 logging.info("CPU architecture is %s", arch)
-logging.info("path is %s################", os.path.join(os.getcwd(), "usr"))
 logging.info("OS code name is %s", os_code_name)
 if arch.startswith('arm'):
     archive_url, folder_name, shared_library = ARCHS[arch][library_version]
+    logging.info("[Info] Only for armv8, you can modify downlod_flycap and DownloadFlyCap.cmake to be compatible with your device"))
 else:
     archive_url, debs, shared_library = ARCHS[arch][library_version]
+    logging.info("[Warn] Only for armv8, you can modify downlod_flycap and DownloadFlyCap.cmake to be compatible with your device"))
 
-logging.info("Logging into ptgrey.com.")
-cj = cookielib.CookieJar()
-opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
-opener.addheaders = [
-    ('User-agent', 'Mozilla/5.0'),
-    ('Referer', 'https://www.ptgrey.com')]
+
+#logging.info("Logging into ptgrey.com.")
+#cj = cookielib.CookieJar()
+#opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
+#opener.addheaders = [
+#    ('User-agent', 'Mozilla/5.0'),
+#    ('Referer', 'https://www.ptgrey.com')]
 #opener.open(LOGIN_URL, urllib.urlencode(LOGIN_DATA))
 
 logging.info("Downloading SDK archive.")
 #resp = opener.open(archive_url)
 
 logging.info("Unpacking tarball.")
-with tarfile.open('/home/nvidia/Downloads/flycapture.2.13.3.31_arm64_xenial.tar.gz') as tar:
+with tarfile.open('pointgrey_drive') as tar:
     tar.extractall()
 
 if arch.startswith('arm'):

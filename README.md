@@ -17,14 +17,14 @@ Environment: Ubuntu 16.04 + ROS kinetic
 
 - Compile source code with catkin_make.
 
-- Set USB permissions
-
-Open `PROJECT_DIR/build/...[TODO]...` and run `sudo sh flycap2-conf`
- 
-- Set usb buffer size and USB3.0 mode
-
+- Set USB permissions:
+```
+open `PROJECT_DIR/build/...[TODO]...` and run `sudo sh flycap2-conf`
+```
+- Set usb buffer size and USB3.0 mode:
+```
 run `gedit /boot/extlinux/extlinux.conf`, add `usbcore.usbfs_memory_mb=1024` and `usb_port_owner_info=2` at the end of the "APPEND" line
-
+```
 - Reboot TX2 with `sudo reboot`
 
 - Check buffer size after reboot with `cat /sys/module/usbcore/parameters/usbfs_memory_mb`

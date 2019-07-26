@@ -8,7 +8,7 @@ This Repo is compatible with armv8 architecture devices, but only tested on jets
 
 Due to the update of the device website, the URL in python script has expired, so I blocked some code of downloading device and directly access the local 64-bit armv8 driver at compile time.
 
-You can download the last pointgrep camera drive [here](https://flir.app.boxcn.net/v/Flycapture2SDK) and modify the pointgrey_camera_driver/cmake/download_flycap and pointgrey_camera_driver/cmake/DownloadFlyCap.cmake to be compatible with your device.
+You can download the last pointgrep camera drive [here](https://flir.app.boxcn.net/v/Flycapture2SDK) and modify the `pointgrey_camera_driver/cmake/download_flycap` and `pointgrey_camera_driver/cmake/DownloadFlyCap.cmake` to be compatible with your device.
 
 
 Installation steps for Jeston TX2:
@@ -18,20 +18,20 @@ Environment: Ubuntu 16.04 + ROS kinetic
 - Compile source code with catkin_make.
 
 - Set USB permissions
+
 Open `PROJECT_DIR/build/...[TODO]...` and run `sudo sh flycap2-conf`
  
 - Set usb buffer size and USB3.0 mode
-run `gedit /boot/extlinux/extlinux.conf`, add `usbcore.usbfs_memory_mb=1024` and `usb_port_owner_info=2` at the end of the "APPEND" line.
 
-- Reboot TX2
-`sudo reboot`
+run `gedit /boot/extlinux/extlinux.conf`, add `usbcore.usbfs_memory_mb=1024` and `usb_port_owner_info=2` at the end of the "APPEND" line
 
-- check buffer size after reboot
-`cat /sys/module/usbcore/parameters/usbfs_memory_mb`
+- Reboot TX2 with `sudo reboot`
+
+- Check buffer size after reboot with `cat /sys/module/usbcore/parameters/usbfs_memory_mb`
 
 - Use `rosrun pointgrey_camera_driver list_cameras` to get camera info
 
-- Run `roslaunch pointgrey_camera_driver camera.launch camera_serial:=xxx` and check camera data by rqt or `rostopic hz /camera_image_color`.
+- Run `roslaunch pointgrey_camera_driver camera.launch camera_serial:=xxx` and check camera data by rqt or `rostopic hz /camera_image_color`
 
 If step 3 not work, check [here](https://devtalk.nvidia.com/default/topic/1049581/jetson-agx-xavier/change-usbcore-usbfs_memory_mb-solved-/)
 

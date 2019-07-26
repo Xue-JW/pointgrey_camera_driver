@@ -12,28 +12,30 @@ You can download the last pointgrep camera drive [here](https://flir.app.boxcn.n
 
 
 Installation steps for Jeston TX2:
-```
-# ENV: Ubuntu 16.04 + ROS kinetic
 
-1. Compile source code with catkin_make.
+Environment: Ubuntu 16.04 + ROS kinetic
 
-2. Open `PROJECT_DIR/build/...[TODO]...` and run `sudo sh flycap2-conf` to set USB permissions.
+- Compile source code with catkin_make.
 
-3. Set usb buffer size and USB3.0 mode by run `gedit /boot/extlinux/extlinux.conf`, add `usbcore.usbfs_memory_mb=1024` and `usb_port_owner_info=2` at the end of the "APPEND" line.
+- Set USB permissions
+Open `PROJECT_DIR/build/...[TODO]...` and run `sudo sh flycap2-conf`
+ 
+- Set usb buffer size and USB3.0 mode
+run `gedit /boot/extlinux/extlinux.conf`, add `usbcore.usbfs_memory_mb=1024` and `usb_port_owner_info=2` at the end of the "APPEND" line.
 
-4. Reboot TX2.
+- Reboot TX2
+`sudo reboot`
 
-5. check buffer size after reboot: `cat /sys/module/usbcore/parameters/usbfs_memory_mb`
+- check buffer size after reboot
+`cat /sys/module/usbcore/parameters/usbfs_memory_mb`
 
-6. Use `rosrun pointgrey_camera_driver list_cameras` to get camera info.
+- Use `rosrun pointgrey_camera_driver list_cameras` to get camera info
 
-7. Run `roslaunch pointgrey_camera_driver camera.launch camera_serial:=xxx` and check camera data by rqt or `rostopic hz /camera_image_color`.
+- Run `roslaunch pointgrey_camera_driver camera.launch camera_serial:=xxx` and check camera data by rqt or `rostopic hz /camera_image_color`.
 
 If step 3 not work, check [here](https://devtalk.nvidia.com/default/topic/1049581/jetson-agx-xavier/change-usbcore-usbfs_memory_mb-solved-/)
-```
 
 Ref:
-
 - https://blog.csdn.net/QFJIZHI/article/details/82896355
 - https://blog.csdn.net/qq_34254510/article/details/80261980
 - https://www.cnblogs.com/renqiangnwpu/p/9142085.html

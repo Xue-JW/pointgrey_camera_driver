@@ -17,7 +17,8 @@ Environment: Ubuntu 16.04 + ROS kinetic
 
 - Clone the repository and compile with catkin_make
 ```
-cd ~/catkin_ws/src
+ws=[your_catkin_ws]
+cd $ws/src
 git clone https://github.com/Xue-JW/pointgrey_camera_driver.git
 cd ../ && catkin_make
 
@@ -25,11 +26,17 @@ cd ../ && catkin_make
 
 - Set USB permissions:
 ```
-open `PROJECT_DIR/build/...[TODO]...` and run `sudo sh flycap2-conf`
+cd $ws/build/pointgrey_camera_driver/usr
+
+sudo chmod +x flycap2-conf
+
+sudo sh flycap2-conf
 ```
 - Set usb buffer size and USB3.0 mode:
 ```
-run `gedit /boot/extlinux/extlinux.conf`, add `usbcore.usbfs_memory_mb=1024` and `usb_port_owner_info=2` at the end of the "APPEND" line
+run `sudo gedit /boot/extlinux/extlinux.conf`
+
+add `usbcore.usbfs_memory_mb=1024` and `usb_port_owner_info=2` at the end of the "APPEND" line
 ```
 - Reboot TX2 with `sudo reboot`
 
@@ -37,7 +44,7 @@ run `gedit /boot/extlinux/extlinux.conf`, add `usbcore.usbfs_memory_mb=1024` and
 
 - Use `rosrun pointgrey_camera_driver list_cameras` to get camera info
 
-- Run `roslaunch pointgrey_camera_driver camera.launch camera_serial:=xxx` and check camera data by rqt or `rostopic hz /camera_image_color`
+- Run `roslaunch pointgrey_camera_driver camera.launch` and check camera data by rqt or `rostopic hz /camera/image_raw`
 
 If step 3 not work, check [here](https://devtalk.nvidia.com/default/topic/1049581/jetson-agx-xavier/change-usbcore-usbfs_memory_mb-solved-/)
 

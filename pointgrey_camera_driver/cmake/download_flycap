@@ -95,10 +95,10 @@ logging.info("CPU architecture is %s", arch)
 logging.info("OS code name is %s", os_code_name)
 if arch.startswith('arm'):
     archive_url, folder_name, shared_library = ARCHS[arch][library_version]
-    logging.info("[Info] Only for armv8, you can modify downlod_flycap and DownloadFlyCap.cmake to be compatible with your device"))
+    logging.info("[Info] Only for armv8, you can modify downlod_flycap and DownloadFlyCap.cmake to be compatible with your device")
 else:
     archive_url, debs, shared_library = ARCHS[arch][library_version]
-    logging.info("[Warn] Only for armv8, you can modify downlod_flycap and DownloadFlyCap.cmake to be compatible with your device"))
+    logging.info("[Warn] Only for armv8, you can modify downlod_flycap and DownloadFlyCap.cmake to be compatible with your device")
 
 
 #logging.info("Logging into ptgrey.com.")
@@ -113,7 +113,7 @@ logging.info("Downloading SDK archive.")
 #resp = opener.open(archive_url)
 
 logging.info("Unpacking tarball.")
-with tarfile.open('pointgrey_drive') as tar:
+with tarfile.open(pointgrey_drive) as tar:
     tar.extractall()
 
 if arch.startswith('arm'):

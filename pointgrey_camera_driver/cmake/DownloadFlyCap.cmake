@@ -13,7 +13,7 @@ function(download_flycap POINTGREY_LIB_VAR POINTGREY_INCLUDE_DIR_VAR)
 
   set(POINTGREY_LIB "${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_LIB_DESTINATION}/libflycapture.so.2")
   set(DOWNLOAD_SCRIPT "${PROJECT_SOURCE_DIR}/cmake/download_flycap")
-  set(POINTGREY_DRIVE "${PROJECT_SOURCE_DIR}/cmake/download_flycap/flycapture.2.13.3.31_arm64_xenial.tar.gz")
+  set(POINTGREY_DRIVE "${PROJECT_SOURCE_DIR}/cmake/flycapture.2.13.3.31_arm64_xenial.tar.gz")
 
   execute_process(
     COMMAND /usr/bin/env python ${DOWNLOAD_SCRIPT} ${POINTGREY_ARCH} ${POINTGREY_LIB} ${OS_CODE_NAME} ${POINTGREY_DRIVE}

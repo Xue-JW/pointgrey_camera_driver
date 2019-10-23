@@ -36,7 +36,7 @@ sudo sh flycap2-conf
 ```
 run `sudo gedit /boot/extlinux/extlinux.conf`
 
-add `usbcore.usbfs_memory_mb=1024` and `usb_port_owner_info=2` at the end of the "APPEND" line
+add `usbcore.usbfs_memory_mb=1024 usb_port_owner_info=2` at the end of the "APPEND" line
 ```
 - Reboot TX2 with `sudo reboot`
 
